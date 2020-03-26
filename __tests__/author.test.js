@@ -1,4 +1,4 @@
-const { getAuthor, getAuthors, getBook, getBooks } = require('../db/data-helpers');
+const { getAuthor, getAuthors } = require('../db/data-helpers');
 
 const request = require('supertest');
 const app = require('../lib/app');
@@ -29,7 +29,7 @@ describe('author routes', () => {
         });
       });
   });
-  
+
   it('gets all authors', async() => {
     const authors = await getAuthors();
 
@@ -59,7 +59,6 @@ describe('author routes', () => {
 
     return request(app)
       .delete(`/api/v1/authors/${author._id}`)
-      .send({ name: 'Rico Budge' })
       .then(res => {
         expect(res.body).toEqual({
           ...author

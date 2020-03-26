@@ -3,9 +3,9 @@ const Author = require('../lib/models/Author');
 const chance = require('chance').Chance();
 
 module.exports = async({ createdAuthors = 10, createdBooks = 100 } = {}) => {
-  const names = ['Tristan Shone', 'Dr. Seuss', 'Stephen King'];
+  // const names = ['Tristan Shone', 'Dr. Seuss', 'Stephen King'];
   const authors = await Author.create([...Array(createdAuthors)].map(() => ({
-    name: chance.pickone(names) 
+    name: chance.name()
   })));
 
   await Book.create([...Array(createdBooks)].map(() => ({
